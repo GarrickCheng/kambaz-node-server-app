@@ -12,7 +12,18 @@ import cors from "cors";
 const app = express()
 app.use(cors({
   credentials: true,
-  origin: process.env.CLIENT_URL || "http://localhost:3000",
+  origin: (origin, callback) => {
+    const allowedOrigins = [
+      "http://localhost:3000",
+      process.env.CLIENT_URL
+    ];
+    // Allow any Vercel preview deployment
+    if (!origin || allowedOrigins.includes(origin) || origin.includes('vercel.app')) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
 }));
 const sessionOptions = {
   secret: process.env.SESSION_SECRET || "kambaz",
