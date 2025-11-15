@@ -2,6 +2,7 @@ import "dotenv/config";
 import express from 'express'
 import session from "express-session";
 import Hello from './Hello.js'
+import Lab5 from './Lab5/index.js'
 import db from "./Kambaz/Database/index.js";
 import UserRoutes from "./Kambaz/Users/routes.js";
 import CourseRoutes from "./Kambaz/Courses/routes.js";
@@ -29,6 +30,7 @@ if (process.env.SERVER_ENV !== "development") {
 app.use(session(sessionOptions));
 app.use(express.json());
 Hello(app)
+Lab5(app)
 UserRoutes(app, db);
 CourseRoutes(app, db);
 ModuleRoutes(app, db);
