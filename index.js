@@ -8,6 +8,7 @@ import db from "./Kambaz/Database/index.js";
 import UserRoutes from "./Kambaz/Users/routes.js";
 import CourseRoutes from "./Kambaz/Courses/routes.js";
 import ModuleRoutes from "./Kambaz/Modules/routes.js";
+import AssignmentRoutes from "./Kambaz/Assignments/routes.js";
 import cors from "cors";
 
 const CONNECTION_STRING = process.env.DATABASE_CONNECTION_STRING || "mongodb://127.0.0.1:27017/kambaz"
@@ -48,4 +49,5 @@ Lab5(app)
 UserRoutes(app, db);
 CourseRoutes(app, db);
 ModuleRoutes(app, db);
+AssignmentRoutes(app, db);
 app.listen(process.env.PORT || 4000)
