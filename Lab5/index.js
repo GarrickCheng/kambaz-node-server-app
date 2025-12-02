@@ -29,25 +29,25 @@ const Lab5 = (app) => {
   app.get("/lab5/add/:a/:b", (req, res) => {
     const { a, b } = req.params;
     const sum = parseInt(a) + parseInt(b);
-    res.send(sum.toString());
+    res.json(sum);
   });
 
   app.get("/lab5/subtract/:a/:b", (req, res) => {
     const { a, b } = req.params;
     const sum = parseInt(a) - parseInt(b);
-    res.send(sum.toString());
+    res.json(sum);
   });
 
   app.get("/lab5/multiply/:a/:b", (req, res) => {
     const { a, b } = req.params;
     const sum = parseInt(a) * parseInt(b);
-    res.send(sum.toString());
+    res.json(sum);
   });
 
   app.get("/lab5/divide/:a/:b", (req, res) => {
     const { a, b } = req.params;
     const sum = parseInt(a) / parseInt(b);
-    res.send(sum.toString());
+    res.json(sum);
   });
 
   app.get("/lab5/calculator", (req, res) => {
@@ -67,9 +67,10 @@ const Lab5 = (app) => {
         result = parseInt(a) / parseInt(b);
         break;
       default:
-        result = "Invalid operation";
+        res.status(400).json({ error: "Invalid operation" });
+        return;
     }
-    res.send(result.toString());
+    res.json(result);
   });
 
   app.get("/lab5/assignment", (req, res) => {
