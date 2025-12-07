@@ -8,7 +8,11 @@ export default function EnrollmentsDao(db) {
     const enrollments = await model.find({ course: courseId }).populate("user");
     return enrollments.map((enrollment) => enrollment.user);
   }
-  function enrollUserInCourse(userId, courseId) {
+  async function enrollUserInCourse(userId, courseId) {
+    const existingEnrollment = await model.findOne({ user: userId, course: courseId });
+    if (existingEnrollment) {
+      return existingEnrollment; // Already enrolled, return existing
+    }
     return model.create({
       user: userId,
       course: courseId,
