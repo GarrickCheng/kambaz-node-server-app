@@ -2,6 +2,7 @@ import "dotenv/config";
 import express from 'express'
 import mongoose from "mongoose";
 import session from "express-session";
+import MongoStore from "connect-mongo";
 import Hello from './Hello.js'
 import Lab5 from './Lab5/index.js'
 import db from "./Kambaz/Database/index.js";
@@ -42,6 +43,10 @@ const sessionOptions = {
   secret: process.env.SESSION_SECRET || "kambaz",
   resave: false,
   saveUninitialized: false,
+  store: MongoStore.create({
+    mongoUrl: CONNECTION_STRING,
+    touchAfter: 24 * 3600, // lazy session update (24 hours)
+  }),
 };
 if (process.env.SERVER_ENV !== "development") {
   sessionOptions.proxy = true;
