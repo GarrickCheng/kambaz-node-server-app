@@ -12,6 +12,10 @@ import ModuleRoutes from "./Kambaz/Modules/routes.js";
 import AssignmentRoutes from "./Kambaz/Assignments/routes.js";
 import QuizRoutes from "./Kambaz/Quizzes/routes.js";
 import QuizAttemptRoutes from "./Kambaz/QuizAttempts/routes.js";
+import PostRoutes from "./Kambaz/Pazza/Posts/routes.js";
+import AnswerRoutes from "./Kambaz/Pazza/Answers/routes.js";
+import FollowupDiscussionRoutes from "./Kambaz/Pazza/FollowupDiscussions/routes.js";
+import FolderRoutes from "./Kambaz/Pazza/Folders/routes.js";
 import cors from "cors";
 
 const CONNECTION_STRING = process.env.DATABASE_CONNECTION_STRING || "mongodb://127.0.0.1:27017/kambaz"
@@ -67,4 +71,8 @@ ModuleRoutes(app, db);
 AssignmentRoutes(app, db);
 QuizRoutes(app);
 QuizAttemptRoutes(app);
+PostRoutes(app);
+AnswerRoutes(app);
+FollowupDiscussionRoutes(app);
+FolderRoutes(app);
 app.listen(process.env.PORT || 4000)
